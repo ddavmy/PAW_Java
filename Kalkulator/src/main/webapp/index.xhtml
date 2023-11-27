@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="/templates/page-template.xhtml">
+
+	<ui:define name="pageContent">
+
+		<p:panel header="Kalkulator" toggleable="true" toggleSpeed="400" style="margin: 1em auto;">
+
+	<h:form>
+		<p:panelGrid layout="grid" columns="3">	
+			<h:outputText for="Kwota" value="#{txtCalc.valueKwota}:"/>
+	  		<p:inputText id="Kwota" placeholder="Kwota" value="#{calcBB.kwota}"  required="true" requiredMessage="Brak kwoty"/>
+			<p:message for="Kwota"/>
+
+			<h:outputText for="Oprocentowanie" value="#{txtCalc.valueProcent}:"/>
+			<p:inputText id="Oprocentowanie" placeholder="Oprocentowanie" value="#{calcBB.procent}"  required="true" requiredMessage="Brak oprocentowania"/>
+			<p:message for="Oprocentowanie"/>
+
+			<h:outputText for="iloscRat" value="#{txtCalc.valueIloscRat}:"/>
+			<p:inputText id="iloscRat" placeholder="Ilość rat" value="#{calcBB.iloscRat}"  required="true" requiredMessage="Brak ilości rat"/>
+			<p:message for="iloscRat"/>
+		</p:panelGrid>
+		
+		<p:panelGrid layout="grid" columns="1">	
+			<p:commandButton type="button" value="#{txtCalc.add}" action="#{calcBB.calc()}">
+				<f:ajax execute="@form" render="msg" />
+			</p:commandButton>
+			
+		<p:messages id="msg"/>
+		
+		</p:panelGrid>
+	</h:form>
+
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
+</html>
